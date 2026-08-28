@@ -1,7 +1,12 @@
-\documentclass[11pt,letter,oneside]{book}
+\DocumentMetadata{
+  lang=en-US,
+  pdfstandard=ua-1,             % Or ua-2, a-2u / a-4f depending on requirements
+  testphase={phase-III,math,table,title} % Activates structural tagging for sections, figures, tables, and math
+}
+
+\documentclass[11pt,letterpaper,oneside]{book}
 \usepackage{osuthesis}
 \usepackage{natbib}
-\usepackage{setspace}
 
 \author{Bob Smith}
 \title{The Title goes here}
@@ -64,15 +69,17 @@ hello hello hello hello hello hello hello hello hello hello hello hello hello he
 
 hello hello hello hello hello\footnote{foobar} hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello
 
-\begin{table}
-\begin{center}
-\begin{tabular}{|l|l|}
-\hline
-Foo & 42 \\
-\hline
+\begin{table}[htbp]
+\centering
+\begin{tabular}{llr}
+\toprule
+Item & Description & Value \\
+\midrule
+Foo  & Sample measurement & 42 \\
+Bar  & Secondary baseline  & 108 \\
+\bottomrule
 \end{tabular}
-\end{center}
-\caption{Example table}
+\caption{Example table with accessible semantic formatting}
 \label{eg-table}
 \end{table}
 
@@ -82,13 +89,12 @@ hello hello hello hello hello hello hello hello hello hello hello hello hello he
 \chapter{Foo chapter}
 hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello
 
-\begin{figure}
-\begin{center}
-Hi there
-%%% For charts and figures, PDF's are best, JPG's are worst
-%\includegraphics[width=0.8\textwidth]{chart.pdf}
-\end{center}
-\caption{Example figure}
+\begin{figure}[htbp]
+\centering
+%%% For charts and figures, PDF's and PNG's are supported.
+%%% The alt key provides alternative text for screen readers.
+\includegraphics[width=0.65\textwidth, alt={Sample plot demonstrating figure inclusion with alternative text}]{example-image-a}
+\caption{Example figure with alt text}
 \label{eg-figure}
 \end{figure}
 

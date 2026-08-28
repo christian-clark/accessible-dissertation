@@ -65,19 +65,20 @@
 %%%            http://www.gradsch.ohio-state.edu/Depo/PDF/GuidelinesSamplePages.pdf
 
 
-\ProvidesPackage{osuthesis}[2014/06/18 v0.9.5.0 Style for Ohio State University dissertations and theses]
-%%% Use mathpazo for Palatino fonts, or txfonts for Times fonts, or comment both lines to use Computer Modern fonts
-%%% See http://www.tug.dk/FontCatalogue  for using other fonts
-%\RequirePackage{mathpazo}
-%\RequirePackage{txfonts}
+\ProvidesPackage{osuthesis}[2026/08/28 v1.0.0 Style for Ohio State University dissertations and theses]
+%%% Modern LuaLaTeX fonts, math, microtypography, and tables
+\RequirePackage{unicode-math}
+\RequirePackage{microtype}
+\RequirePackage{booktabs}
 \RequirePackage[letterpaper,includeheadfoot,top=1.0in,bottom=1.0in,right=1.0in,left=1.5in]{geometry}
 \RequirePackage[doublespacing]{setspace} % `doublespacing' is actually about 1.6 spacing, which is better anyway
 \RequirePackage{graphicx}
 \RequirePackage{fancyhdr}
-\RequirePackage[hyperref,table,x11names]{xcolor} % See documentation PDF at http://www.ctan.org/pkg/xcolor
+\RequirePackage[table,x11names]{xcolor} % See documentation PDF at http://www.ctan.org/pkg/xcolor
 \definecolor{linkblue}{rgb}{0,0,0.30}
 \RequirePackage{url}
-\RequirePackage[pdfborder=0 0 0, colorlinks=true, citecolor=linkblue, linkcolor=linkblue, urlcolor=linkblue, letterpaper, bookmarksopen=true, bookmarksopenlevel=1, unicode=true, pdfa=true]{hyperref}
+\RequirePackage[pdfborder={0 0 0}, colorlinks=true, citecolor=linkblue, linkcolor=linkblue, urlcolor=linkblue, bookmarksopen=true, bookmarksopenlevel=1]{hyperref}
+\RequirePackage{bookmark}
 
 \pagestyle{plain}
 
@@ -171,24 +172,8 @@
     \clearpage
 }
 
-%%% Make chapters in TOC boring
-%\renewcommand*\l@chapter{\@dottedtocline{1}{1.0em}{1.5em}}
-\renewcommand*\l@chapter[2]{%
-  \ifnum \c@tocdepth >\m@ne
-    \addpenalty{-\@highpenalty}%
-    \vskip 1.0em \@plus\p@
-    \setlength\@tempdima{1.5em}%
-    \begingroup
-      \parindent \z@ \rightskip \@pnumwidth
-      \parfillskip -\@pnumwidth
-      \leavevmode 
-      \advance\leftskip\@tempdima
-      \hskip -\leftskip
-      %#1\nobreak\dotfill \nobreak\hb@xt@\@pnumwidth{\hss #2}\par
-      #1 \dotfill \hb@xt@\@pnumwidth{\hss #2}\par
-      \penalty\@highpenalty
-    \endgroup
-  \fi}
+%%% Use standard dotted TOC line for chapters to maintain tagged PDF/UA compliance
+\renewcommand*\l@chapter{\@dottedtocline{0}{0pt}{1.5em}}
 
 %
 %%
@@ -259,10 +244,12 @@
 
     \vspace{1.4em}
 
-    %%% Separator
-    % $* * * * *$
-    %%% Nice tilde + double not separator
-    \resizebox{12mm}{\height}{$\large \sim$}\hspace{ -7.3mm }$\scriptstyle \not\,\not$ \hspace{5mm}
+    %%% Separator (tagged as Artifact for assistive technologies)
+    \tagstructbegin{tag=Artifact}%
+    \tagmcbegin{tag=Artifact}%
+    \resizebox{12mm}{\height}{\textasciitilde}\hspace{-5mm}\textbf{/\!/}\hspace{3mm}%
+    \tagmcend%
+    \tagstructend%
 
     \vspace{2.3em}
 
@@ -309,7 +296,6 @@
 
 %%% Copyright page
 \newcommand{\copyrightpage}{
-    \setcounter{page}{1}
     \thispagestyle{empty}
     \vspace*{2.5in}
     \begin{center}

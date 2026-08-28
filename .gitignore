@@ -1,0 +1,21 @@
+# LaTeX compilation artifacts
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lot
+*.nav
+*.out
+*.pdf.tmp-*
+*.snm
+*.synctex.gz
+*.toc
+*.vrb
+*-mathml.xml
+*-luamml-mathml.xml
+*-mathml.html
+*-luamml-mathml.html
+latex-*-css.html
