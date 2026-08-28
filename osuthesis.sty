@@ -109,44 +109,76 @@
 \renewcommand\bibname{References}
 
 
-%%% The following commands were modified from book.cls
-%%
-%
+%%% Heading formatting for Tagged PDF (LaTeX-lab template system)
+\IfInstanceExistsT{heading}{chapter}{
+  \DeclareInstance{headformat}{chapter}{display}
+  {
+    , heading-indent    = 0pt
+    , prefix-number-sep = \WordSpaceAmount{1}
+    , number-title-sep  = 2em
+  }
+
+  \DeclareInstance{heading}{chapter}{display}
+  {
+    , name           = chapter
+    , level          = 0
+    , placement      = top
+    , after-penalty-vspace = 0pt
+    , after-vspace   = 40pt
+    , prefix         = \@chapapp
+    , number-format  = \thechapter
+    , heading-decls  = \centering\normalfont
+    , title-decls    = \bfseries\Large
+    , headformat-instance = chapter
+    , mark-cmd       = \chaptermark {#1}
+    , contents-extra = \addtocontents{lof}{\protect\addvspace{10\p@}}
+                       \addtocontents{lot}{\protect\addvspace{10\p@}}
+  }
+}
+
+\IfInstanceExistsT{heading}{section}{
+  \DeclareInstance{heading}{section}{display}
+  {
+    , name          = section
+    , level         = 1
+    , mark-cmd      = \sectionmark {#1}
+    , before-vspace = 3.5ex plus 1ex minus .2ex
+    , after-vspace  = 2.3ex plus .2ex
+    , heading-decls = \normalfont\Large\bfseries
+    , headformat-instance = section
+  }
+}
+
+%%% The following fallback commands are for legacy / non-tagged compilation
 \def\@makechapterhead#1{%
-  %\addcontentsline{toc}{chapter}{#1}
   \vspace*{0\p@}%
   {\parindent \z@ \raggedright \normalfont
     \begin{center}
     \ifnum \c@secnumdepth >\m@ne
       \if@mainmatter
-        %\huge\bfseries {\uppercase\expandafter{\@chapapp\space \thechapter}}
         \@chapapp\space \thechapter
         \par
         \vspace{2em}
       \fi
     \fi
     \interlinepenalty\@M
-	{\bf\Large#1}\par\nobreak
+	{\bfseries\Large#1}\par\nobreak
     \vskip 40\p@
     \end{center}
   }}
 
 \def\@makeschapterhead#1{%
-  %\addcontentsline{toc}{chapter}{#1}
   \vspace*{-20\p@}%
   {\parindent \z@ \raggedright \normalfont
     \begin{center}
     \ifnum \c@secnumdepth >\m@ne
       \if@mainmatter
-        %\huge\bfseries {\uppercase\expandafter{\@chapapp\space \thechapter}}
-        %\MakeUppercase{\@chapapp\space \thechapter}
         \par
         \vspace{2em}
       \fi
     \fi
     \interlinepenalty\@M
-     %\MakeUppercase{#1}\par\nobreak
-	{\bf\Large#1}\par\nobreak
+	{\bfseries\Large#1}\par\nobreak
     \vskip 40\p@
     \end{center}
   }}
@@ -247,7 +279,11 @@
     %%% Separator (tagged as Artifact for assistive technologies)
     \tagstructbegin{tag=Artifact}%
     \tagmcbegin{tag=Artifact}%
-    \resizebox{12mm}{\height}{\textasciitilde}\hspace{-5mm}\textbf{/\!/}\hspace{3mm}%
+    \makebox[12mm][c]{%
+      \resizebox{12mm}{\height}{$\sim$}%
+      \hspace{-12mm}%
+      \makebox[12mm][c]{$\scriptstyle /\mkern-5.5mu/$}%
+    }%
     \tagmcend%
     \tagstructend%
 
