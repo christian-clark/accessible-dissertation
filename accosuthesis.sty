@@ -1,72 +1,23 @@
 %%%
 %
-%                        osuthesis.sty
+%                        accosuthesis.sty
 %
 %
-% LaTeX .sty file for Ohio State University Dissertations & Theses
+% Custom LaTeX .sty file for Ohio State University Dissertations & Theses,
+% modified from osutheses.sty from Jon Dehdari
 %
-%                   (c) Jon Dehdari, 2008-2014
+%   Original author: (c) Jon Dehdari, 2008-2014
+%
+% The author of these modifications explicitly 
+% waives any right to attribution. Future modifiers do not need to 
+% cite or credit the modifier of this version.
 %
 % This file may be used under the terms of the free LaTeX Project
 % Public License (www.latex-project.org/lppl.txt).
 %
 %%%
 
-%%% Todo:
-
-
-%%% Make sure the first few lines of your .tex file look like:
-%
-% \documentclass[11pt,oneside]{book}
-% \usepackage{osuthesis}
-%
-% \author{Bob Smith}
-% \title{The Title goes here}
-% \papertype{Dissertation}
-% \degree{Doctor of Philosophy}
-% \dept{Underwater Basketweaving} % https://en.wikipedia.org/wiki/Underwater_basket_weaving
-% \subject{Statistical Underwater Basketweaving}
-% \keywords{Wicker, Brine, Container Topology}
-% \committeechair{Isaac Newton}
-% \committeemembera{Albert Einstein}
-% \committeememberb{Foo Lano}
-% %\committeememberc{SpongeBob SquarePants}
-% %\committeememberd{Brutus Buckeye}
-%
-% \abstract{
-%   This is the abstract.
-% }
-%
-% \ack{
-%   Stuff
-% }
-%
-% \vita{
-%   Stuff
-% }
-%
-% \publications{
-%   Stuff
-% }
-%
-% \studyfields{
-%   Stuff
-% }
-%
-% \begin{document}
-% \frontmatter
-%
-% \chapter{Introduction}
-% Stuff
-%
-%%%
-
-%%% See also:  http://www.gradsch.ohio-state.edu/Depo/PDF/Guidelines.pdf
-%%%            http://www.gradsch.ohio-state.edu/Depo/PDF/GuidelinesSamplePages.pdf
-
-
-\ProvidesPackage{osuthesis}[2026/08/28 v1.0.0 Style for Ohio State University dissertations and theses]
-%%% Modern LuaLaTeX fonts, math, microtypography, and tables
+\ProvidesPackage{accosuthesis}[2026/08/28 v1.0.0 Style for Ohio State University dissertations and theses]
 \RequirePackage{unicode-math}
 \RequirePackage{microtype}
 \RequirePackage{booktabs}
@@ -74,7 +25,7 @@
 \RequirePackage[doublespacing]{setspace} % `doublespacing' is actually about 1.6 spacing, which is better anyway
 \RequirePackage{graphicx}
 \RequirePackage{fancyhdr}
-\RequirePackage[table,x11names]{xcolor} % See documentation PDF at http://www.ctan.org/pkg/xcolor
+\RequirePackage[table,x11names]{xcolor}
 \definecolor{linkblue}{rgb}{0,0,0.30}
 \RequirePackage{url}
 \RequirePackage[pdfborder={0 0 0}, colorlinks=true, citecolor=linkblue, linkcolor=linkblue, urlcolor=linkblue, bookmarksopen=true, bookmarksopenlevel=1]{hyperref}
@@ -88,7 +39,7 @@
 \renewcommand\contentsname{\normalsize {\normalfont Table of Contents}}
 
 
-%%% Some initial definitions
+%%% Iinitial definitions
 \def\degree#1{\gdef\@degree{#1}}
 \def\papertype#1{\gdef\@papertype{#1}}
 \def\dept#1{\gdef\@dept{#1}}
@@ -211,7 +162,6 @@
 %%
 %%% The previous commands were modified from book.cls
 
-
 %%% Specify Front Matter
 \renewcommand{\frontmatter}{
     \pagenumbering{roman}
@@ -241,15 +191,10 @@
 \widowpenalty=9999
 
 
-
-
 %%% Title page
 \renewcommand{\titlepage}{
 \hypersetup{pdfauthor={\@author}, pdftitle={\@title}, pdfsubject={\@subject}, pdfkeywords={\@keywords}} % Populates PDF metadata with info that the user has already supplied
  \thispagestyle{empty}
-
-  %\setlength{\columnsep}{1.0em}
-  %\twocolumn[
 
     \vspace*{0.0in}
     \begin{center}
@@ -297,7 +242,6 @@
 
 
     \vspace{2.3em}
-  %]
 
 
   \@papertype \ Committee:
@@ -312,18 +256,11 @@
 
   %Professor \@committeememberd
 
-  %\vspace{40em}
-  %\begin{center}
-  %Approved by
-  %
-  %\vspace{2em}
-  %
-  %\underline{\hspace{0.5\textwidth}}
-  %
-  %Adviser % Yes, the graduate school styleguide spells it adviser  :-/
-  %
-  %\end{center}
-  %\onecolumn
+  % To put multiple committee members on the same line for big committees:
+  %Professor \@committeemembera \qquad Professor \@committeememberb
+    
+  %Professor \@committeememberc \qquad Professor \@committeememberd
+
   \end{center}
   \clearpage
 }
@@ -339,7 +276,6 @@
     \end{center}
     \clearpage
 }
-
 
 
 %%% Abstract page

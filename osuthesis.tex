@@ -1,18 +1,20 @@
 \DocumentMetadata{
   lang=en-US,
-  pdfstandard=ua-1,             % Or ua-2, a-2u / a-4f depending on requirements
+  pdfstandard=ua-1,
   testphase={phase-III,math,table,title} % Activates structural tagging for sections, figures, tables, and math
 }
 
 \documentclass[11pt,letterpaper,oneside]{book}
-\usepackage{osuthesis}
+\usepackage{accosuthesis}
 \usepackage{natbib}
+\usepackage{lipsum} % for lorem ipsum placeholder text
+\usepackage[base]{babel} % for lorem ipsum placeholder text
 
 \author{Bob Smith}
 \title{The Title goes here}
 \papertype{Dissertation}
 \degree{Doctor of Philosophy}
-\dept{Underwater Basketweaving} % https://en.wikipedia.org/wiki/Underwater_basket_weaving
+\dept{Underwater Basketweaving}
 \subject{Statistical Underwater Basketweaving}
 \keywords{Wicker, Brine, Container Topology}
 \committeechair{Isaac Newton}
@@ -22,21 +24,23 @@
 %\committeememberd{Brutus Buckeye}
 
 \abstract{
-  This is the abstract.
+  \lipsum[1-2]
 }
 
 \ack{
-  Stuff
+  \lipsum[3-4]
 }
+
 
 \vita{
 	\begin{spacing}{1.2}
 		\begin{tabular}{ll}
-		  %%% First line may need to be a little different.
-		  %%% If the first half of first line is longer than 2.5in, then you don't need this first line.
-		  \makebox[2.5in][s]{foo \dotfill } & bar \\
-		  foo \dotfill & bar \\
-		  foo \dotfill & bar \\
+		  \makebox[3in][s]{foo \dotfill } &  bar \\
+		  \makebox[3in][s]{foo \dotfill } & bar \\
+        \makebox[3in][s]{foo \dotfill } &  bar \\
+        % alternative for rows after the first
+        %foo \dotfill & bar \\
+
 		\end{tabular}
 	\end{spacing}
 }
@@ -57,51 +61,8 @@
 \begin{document}
 \frontmatter
 
-\chapter{Introduction}
-hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello
-
-hello hello hello hello hello\footnote{foobar} hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello
-
-\section{Foo section}
-hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello
-
-hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello
-
-hello hello hello hello hello\footnote{foobar} hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello
-
-\begin{table}[htbp]
-\centering
-\begin{tabular}{llr}
-\toprule
-Item & Description & Value \\
-\midrule
-Foo  & Sample measurement & 42 \\
-Bar  & Secondary baseline  & 108 \\
-\bottomrule
-\end{tabular}
-\caption{Example table with accessible semantic formatting}
-\label{eg-table}
-\end{table}
-
-hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello
-
-
-\chapter{Foo chapter}
-hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello
-
-\begin{figure}[htbp]
-\centering
-%%% For charts and figures, PDF's and PNG's are supported.
-%%% The alt key provides alternative text for screen readers.
-\includegraphics[width=0.65\textwidth, alt={Sample plot demonstrating figure inclusion with alternative text}]{example-image-a}
-\caption{Example figure with alt text}
-\label{eg-figure}
-\end{figure}
-
-hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello \citep{newton-etal2015}
-
-
-
+\include{chap.intro}
+\include{chap.foo}
 
 
 %%% The Bibliography
@@ -115,15 +76,12 @@ hello hello hello hello hello hello hello hello hello hello hello hello hello he
 \bibliography{mybib}
 \end{spacing}
 
-
 %%% Appendices
 \clearpage
 \phantomsection
 \addcontentsline{toc}{chapter}{Appendices}
 \appendix
-\chapter{Sample Appendix}
-hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello
-hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello hello
+\include{appx.sample}
 
 
 \end{document}
