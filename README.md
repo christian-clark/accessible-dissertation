@@ -12,7 +12,7 @@ To future dissertators: if you find that this template doesn't comform to future
 
 ## Notes
 * This template is designed for LuaLaTeX. Older engines like pdfLaTeX are pretty horrible at tagging for accessibility. Make sure you've downloaded a current version of LuaLaTeX (or selected it on Overleaf) before trying to compile.
-* Anecdotally, missing alt text for images and figures has been a main reason why LaTeX-based dissertations have not passed OSU's [Format Review](https://gradsch.osu.edu/current-students/dissertations-and-theses/format-review-and-submission). See chap.foo.tex for an example of how to add alt text
+* Anecdotally, missing alt text for images and figures has been a main reason why LaTeX-based dissertations have not passed OSU's [Format Review](https://gradsch.osu.edu/current-students/dissertations-and-theses/format-review-and-submission). See chap.foo.tex for an example of how to add alt text.
 * Adobe Acrobat has built-in tools you can use to verify that your final PDF is accessible.
 
 ## Resources and References
